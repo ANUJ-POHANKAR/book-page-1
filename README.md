@@ -13,7 +13,7 @@ angular-frontend/
 ├── package.json           # Node.js dependencies
 ├── tsconfig.json          # TypeScript config
 ├── Dockerfile             # Dockerfile for the frontend
-------------------------------------------------------------------------------------------------------------------------------------
+-------
 My app creation 
 Dockerfile
 # Stage 1: Build the Angular app
@@ -45,3 +45,6 @@ EXPOSE 80
 
 # Start Nginx to serve the app
 CMD ["nginx", "-g", "daemon off;"]
+
+
+
