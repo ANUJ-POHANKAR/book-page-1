@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()">
+  <label for="cusname">Customer Name:</label>
+  <input type="text" id="cusname" [(ngModel)]="formData.cusname">
+
+  <label for="telephone">Telephone:</label>
+  <input type="text" id="telephone" [(ngModel)]="formData.telephone">
+
+  <label for="mail">Email:</label>
+  <input type="email" id="mail" [(ngModel)]="formData.mail">
+
+  <label for="book">Book:</label>
+  <input type="text" id="book" [(ngModel)]="formData.book">
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" [(ngModel)]="formData.quantity">
+
+  <button type="submit">Submit</button>
+</form>
+
