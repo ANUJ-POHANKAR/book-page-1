@@ -1,0 +1,25 @@
+sudo yum update -y
+sudo yum install -y git curl
+Install Node.js and npm:
+Step 2: Install Node.js and npm
+curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
+sudo yum install -y nodejs 
+Verify the installation:
+node -v
+npm -v
+Step 3: Clone Your Angular Frontend Repository 
+git clone <your-repository-url>
+cd angular-frontend
+Step 4: Install Angular CLI and Build the App 
+Install Angular CLI globally:
+⦁	sudo npm install -g @angular/cli
+Install project dependencies:
+⦁	npm install
+Build the application for production:
+⦁	ng build --prod
+Step 5: Serve the Application 
+Install a static server (e.g., http-server):
+⦁	sudo npm install -g http-server
+Serve the built application:
+⦁	cd dist/<project-name> # Replace <project-name> with your Angular project name
+⦁	http-server -p 80
