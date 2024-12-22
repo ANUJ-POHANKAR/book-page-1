@@ -1,0 +1,50 @@
+angular-frontend/
+├── src/
+│   ├── app/                           # Contains Angular app-specific code
+│   │   ├── form/                      # Form-specific component code
+│   │   │   ├── form.component.ts      # TypeScript logic for the form
+│   │   │   ├── form.component.html    # HTML template for the form
+│   │   │   ├── form.component.css     # CSS for the form styling
+│   │   └── app.module.ts              # Main Angular module for the app
+│   ├── index.html                     # Entry point for the Angular app
+├── angular.json                       # Angular CLI configuration file
+├── package.json                       # Node.js dependencies and project metadata
+├── tsconfig.json                      # TypeScript configuration file
+├── Dockerfile                         # Dockerfile for building and running the frontend
+
+
+src/app/:
+Contains your application's main logic.
+Subdirectory form/ holds files for the form-related component (HTML, CSS, TypeScript).
+
+src/index.html:
+Acts as the entry point for the Angular app.
+
+angular.json:
+Configures the Angular CLI, specifying the build process, assets, and more.
+
+package.json:
+Lists all Node.js dependencies required for the app (e.g., Angular core, CLI, etc.).
+
+tsconfig.json:
+Configures TypeScript (e.g., compiler options, module resolution).
+
+Dockerfile:
+Contains instructions to build and containerize the Angular app.
+--------------------------------------------------------------------------------
+spring-backend/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/backend/
+│   │   │   └── Controller.java
+│   │   └── resources/
+│   │       └── application.properties
+├── pom.xml
+├── Dockerfile
+Java Files:
+Found in src/main/java/com/example/backend/.
+The folder com/example/backend reflects the Java package com.example.backend.
+Configuration Files:
+Found in src/main/resources/.
+Build and Docker Configuration:
+Found at the root level of the project: pom.xml and Dockerfile.
