@@ -26,6 +26,7 @@ EXPOSE 8080: This line informs Docker that the container will listen on port 808
 11. Entrypoint:
 ENTRYPOINT ["java", "-jar", "app.jar"]: This line specifies the command that will be executed when the container starts. It runs the Java executable with the -jar option to execute the app.jar file.
 
+another dockerfile.
 
 # Stage 1: Build Stage
 FROM maven:3.9.5-eclipse-temurin-17 AS builder
