@@ -25,3 +25,18 @@ COPY --from=builder /app/target/*.jar app.jar: This command copies the built JAR
 EXPOSE 8080: This line informs Docker that the container will listen on port 8080.
 11. Entrypoint:
 ENTRYPOINT ["java", "-jar", "app.jar"]: This line specifies the command that will be executed when the container starts. It runs the Java executable with the -jar option to execute the app.jar file.
+
+
+# Stage 1: Build Stage
+FROM maven:3.9.5-eclipse-temurin-17 AS builder
+WORKDIR /app
+COPY spring-backend/pom.xml .
+COPY spring-backend/src ./src
+RUN mvn -f pom.xml clean package -DskipTests
+
+# Stage 2: Runtime Stage
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/target/*.jar backend.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "backend.jar"]
