@@ -1,0 +1,2 @@
+docker run -it --entrypoint /bin/bash <image_name>
+mvn clean package
