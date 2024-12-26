@@ -1,2 +1,2 @@
-docker run -it --entrypoint /bin/bash <image_name>
+sudo docker run -it --entrypoint /bin/bash <image_name>
 mvn clean package
