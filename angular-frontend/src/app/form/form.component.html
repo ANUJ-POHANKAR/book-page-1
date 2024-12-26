@@ -1,19 +1,41 @@
-<form (ngSubmit)="onSubmit()">
-  <label for="cusname">Customer Name:</label>
-  <input type="text" id="cusname" [(ngModel)]="formData.cusname">
-
-  <label for="telephone">Telephone:</label>
-  <input type="text" id="telephone" [(ngModel)]="formData.telephone">
-
-  <label for="mail">Email:</label>
-  <input type="email" id="mail" [(ngModel)]="formData.mail">
-
-  <label for="book">Book:</label>
-  <input type="text" id="book" [(ngModel)]="formData.book">
-
-  <label for="quantity">Quantity:</label>
-  <input type="number" id="quantity" [(ngModel)]="formData.quantity">
-
-  <button type="submit">Submit</button>
+<form (ngSubmit)="onSubmit(orderForm)" #orderForm="ngForm">
+    <fieldset>
+        <legend>Customer Info</legend>
+        <p>
+            <label>
+                Name:
+                <input name="cusname" type="text" ngModel placeholder="Enter your name" required size="50">
+            </label>
+        </p>
+        <p>
+            <label>
+                Telephone:
+                <input name="telephone" type="tel" ngModel required size="50" placeholder="Pattern: 234-567-8910" pattern="(([0-9]{3})(-[0-9]{3})(-[0-9]{4}))">
+            </label>
+        </p>
+        <p>
+            <label>
+                Email address:
+                <input name="mail" type="email" ngModel placeholder="Enter your email address" required size="50" multiple>
+            </label>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Books</legend>
+        <p>
+            <label>
+                <input type="text" name="book" ngModel list="books" size="50">
+                <datalist id="books">
+                    <option value="HTML5 - Bruce Lawson and Remy Sharp"></option>
+                    <option value="HTML5 : Up and Running - Mark Pilgrim"></option>
+                    <option value="Head First HTML5 programming - Eric Freeman"></option>
+                    <option value="Mastering HTML,CSS and JavaScript - Laura Lemay"></option>
+                </datalist>
+            </label>
+            <label>
+                Quantity (Maximum 5): <input name="quantity" ngModel type="number" min="1" max="5">
+            </label>
+        </p>
+    </fieldset>
+    <input type="submit" value="Submit" name="submit">
 </form>
-
