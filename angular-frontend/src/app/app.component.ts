@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root', // Root selector for the Angular app
   template: `
     <div class="app-container">
-      <h1>Welcome to My Angular App</h1>
+      <h1>Book Page</h1>
       <app-form></app-form> <!-- Embed the FormComponent -->
     </div>
   `,
