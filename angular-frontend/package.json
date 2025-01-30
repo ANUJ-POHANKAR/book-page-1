@@ -38,7 +38,6 @@
     "karma-jasmine-html-reporter": "^2.0.0",
     "typescript": "^4.8.4",
     "glob": "^9.0.0",
-    "acorn-import-attributes": "^1.9.1",
-    "babel-plugin-transform-object-rest-spread": "^7.20.7"
+    "acorn-import-attributes": "^1.9.1"
   }
 }
