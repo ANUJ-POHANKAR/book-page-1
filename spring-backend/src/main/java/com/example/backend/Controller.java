@@ -22,7 +22,7 @@ public class Controller {
     }
 }
 
-public static class Order {
+class Order {
     private String name;
     private String email;
     private String book;
