@@ -9,48 +9,6 @@
     <description>A simple Spring backend</description>
 
     <!-- Parent Spring Boot starter -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.3</version>
-    </parent>
-
-    <dependencies>
-        <!-- Spring Boot Web Starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Spring Boot JPA Starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- MySQL Connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
-            <scope>runtime</scope>
-        </dependency>
-    </dependencies>
-
-    <!-- Build plugins -->
-    <build>
-        <plugins>
-            <!-- Spring Boot Maven Plugin -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.1.3</version> <!-- Ensure this matches your Spring Boot version -->
-                <configuration>
-                    <!-- Explicitly specify the main class if it can't be auto-detected -->
-                    <mainClass>com.example.backend.BackendApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    
 </project>
 
