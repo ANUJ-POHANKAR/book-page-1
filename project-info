@@ -12,25 +12,6 @@ angular-frontend/
 ├── tsconfig.json                      # TypeScript configuration file
 ├── Dockerfile                         # Dockerfile for building and running the frontend
 
-
-src/app/:
-Contains your application's main logic.
-Subdirectory form/ holds files for the form-related component (HTML, CSS, TypeScript).
-
-src/index.html:
-Acts as the entry point for the Angular app.
-
-angular.json:
-Configures the Angular CLI, specifying the build process, assets, and more.
-
-package.json:
-Lists all Node.js dependencies required for the app (e.g., Angular core, CLI, etc.).
-
-tsconfig.json:
-Configures TypeScript (e.g., compiler options, module resolution).
-
-Dockerfile:
-Contains instructions to build and containerize the Angular app.
 --------------------------------------------------------------------------------
 spring-backend/
 ├── src/
@@ -42,9 +23,4 @@ spring-backend/
 ├── pom.xml
 ├── Dockerfile
 Java Files:
-Found in src/main/java/com/example/backend/.
-The folder com/example/backend reflects the Java package com.example.backend.
-Configuration Files:
-Found in src/main/resources/.
-Build and Docker Configuration:
-Found at the root level of the project: pom.xml and Dockerfile.
+
