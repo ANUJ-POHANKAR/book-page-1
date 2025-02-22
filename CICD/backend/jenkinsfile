@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-  stage('Dependency Vulnerability Scan') {
+  stage('Dependency Vulnerability Scan-OWASP') {
     steps {
         sh '''
             curl -L -o dependency-check.tar.gz https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-9.0.10-release.tar.gz
