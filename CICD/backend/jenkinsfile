@@ -1,32 +1,45 @@
 pipeline {
     agent any
 
+    environment {
+        SONAR_URL = "http://13.127.199.137:9000"
+    }
+
     stages {
         stage('Git Checkout') {
             steps {
                 git(
-                    credentialsId: 'github-user', 
+                    credentialsId: 'github-user',
                     url: 'https://github.com/ANUJ-POHANKAR/book-page-1.git'
                 )
             }
-        }   
-      stage('Static Code Analysis') {
-      environment {
-        SONAR_URL = "http://13.127.199.137:9000" 
-      }
-      steps {
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'cd spring-backend && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
-      }
-    }
-        stage('Docker Stage') {
+
+        stage('Static Code Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+                    sh 'cd spring-backend && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+                }
+            }
+        }
+
+        stage('Docker Build') {
             steps {
                 sh '''
                     sudo yum update -y && sudo yum install docker -y
                     sudo systemctl start docker
                     sudo systemctl enable docker
                     sudo docker build -t demo .
+                '''
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                sh '''
+                    trivy --version
+                    trivy image --exit-code 1 --severity HIGH,CRITICAL demo
+                    echo "Trivy scan completed!"
                 '''
             }
         }
@@ -54,8 +67,10 @@ pipeline {
                             cd kubenetes-cd
                             git checkout main
                             ls -al
-                            # Replace the full image URL with the correct format
+                            
+                            # Update only Docker Hub image reference in back.yaml
                             sed -i "s#image: anuj210/dock-repo:[^[:space:]]*#image: anuj210/dock-repo:$BUILD_TIMESTAMP#" dev/back.yaml
+
                             git add .
                             git commit -m "Update image tag to $BUILD_TIMESTAMP"
                             git pull origin main
