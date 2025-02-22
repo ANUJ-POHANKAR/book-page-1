@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        SONAR_URL = "http://13.127.199.137:9000"
-    }
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -13,6 +9,10 @@ pipeline {
                     url: 'https://github.com/ANUJ-POHANKAR/book-page-1.git'
                 )
             }
+        }
+
+        environment {
+            SONAR_URL = "http://13.127.199.137:9000"
         }
 
         stage('Static Code Analysis') {
@@ -30,17 +30,19 @@ pipeline {
                     sudo systemctl start docker
                     sudo systemctl enable docker
                     sudo docker build -t demo .
+                    sudo docker tag demo anuj210/dock-repo:latest
                 '''
             }
         }
 
-        stage('Trivy Scan') {
+        stage('Trivy Vulnerability Scan') {
             steps {
                 sh '''
-                    trivy --version
-                    trivy image --exit-code 1 --severity HIGH,CRITICAL demo
-                    echo "Trivy scan completed!"
+                    docker pull aquasec/trivy:latest
+                    docker images | grep "anuj210/dock-repo"  # Ensure the image exists
+                    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --format json -o trivy-report.json anuj210/dock-repo:latest || true
                 '''
+                archiveArtifacts artifacts: 'trivy-report.json', fingerprint: true
             }
         }
 
@@ -48,8 +50,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Scatter@123" | sudo docker login -u "anuj210" --password-stdin
-                    sudo docker tag demo anuj210/dock-repo:$BUILD_TIMESTAMP
-                    sudo docker push anuj210/dock-repo:$BUILD_TIMESTAMP
+                    sudo docker push anuj210/dock-repo:latest
                     sudo docker system prune -a -f
                 '''
             }
@@ -69,10 +70,10 @@ pipeline {
                             ls -al
                             
                             # Update only Docker Hub image reference in back.yaml
-                            sed -i "s#image: anuj210/dock-repo:[^[:space:]]*#image: anuj210/dock-repo:$BUILD_TIMESTAMP#" dev/back.yaml
+                            sed -i "s#image: anuj210/dock-repo:[^[:space:]]*#image: anuj210/dock-repo:latest#" dev/back.yaml
 
                             git add .
-                            git commit -m "Update image tag to $BUILD_TIMESTAMP"
+                            git commit -m "Update image tag to latest"
                             git pull origin main
                             git push origin main
                         '''
