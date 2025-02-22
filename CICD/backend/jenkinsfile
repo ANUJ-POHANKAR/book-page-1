@@ -16,17 +16,18 @@ pipeline {
             }
         }
 
-        stage('Dependency Vulnerability Scan') {
-            steps {
-                sh '''
-                    curl -L -o dependency-check.tar.gz https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-9.0.10-release.tar.gz
-                    tar -xvzf dependency-check.tar.gz
-                    dependency-check/bin/dependency-check.sh --project "Backend Project" --scan . --format HTML --out dependency-report.html
-                '''
-                archiveArtifacts artifacts: 'dependency-report.html', fingerprint: true
-            }
-        }
-
+  stage('Dependency Vulnerability Scan') {
+    steps {
+        sh '''
+            curl -L -o dependency-check.tar.gz https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-9.0.10-release.tar.gz
+            tar -xvzf dependency-check.tar.gz
+            
+            cd spring-backend
+            ../dependency-check/bin/dependency-check.sh --project "Spring Backend" --scan . --format HTML --out ../dependency-report.html
+        '''
+        archiveArtifacts artifacts: 'dependency-report.html', fingerprint: true
+    }
+}
         stage('Static Code Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
