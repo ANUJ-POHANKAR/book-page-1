@@ -55,7 +55,7 @@ pipeline {
                             git checkout main
                             ls -al
                             # Replace the full image URL with the correct format
-                            sed -i "s#image: 970653867674.dkr.ecr.ap-south-1.amazonaws.com/backend-image:.*#image: anuj210/dock-repo:$BUILD_TIMESTAMP#" dev/back.yaml
+                            sed -i "s#image: anuj210/dock-repo:[^[:space:]]*#image: anuj210/dock-repo:$BUILD_TIMESTAMP#" dev/back.yaml
                             git add .
                             git commit -m "Update image tag to $BUILD_TIMESTAMP"
                             git pull origin main
