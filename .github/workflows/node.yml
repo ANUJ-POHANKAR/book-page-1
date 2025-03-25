@@ -1,7 +1,7 @@
 name: nodejs
 on: push
 jobs: 
-  node:
+  build:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
@@ -13,3 +13,8 @@ jobs:
       - run: npm install -g @angular/cli  
       - run: npm run build
         working-directory: angular-frontend
+  deploy:
+    needs: build
+    runs-on: "ubuntu-latest"
+    steps: 
+      - run: echo "success"
