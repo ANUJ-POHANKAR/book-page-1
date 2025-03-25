@@ -6,8 +6,6 @@ jobs:
     steps: 
       - name: fetch code
         uses: actions/checkout@v4
-      - name: angular-frontend
-        run: cd angular-frontend
       - name: Install NodeJS
       - uses: actions/setup-node@v4
         with:
