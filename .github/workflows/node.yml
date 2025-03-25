@@ -18,3 +18,12 @@ jobs:
         with:
           name: angular-build
           path: angular-frontend/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-build  # Must match the uploaded artifact name
+          path: angular-frontend/dist
