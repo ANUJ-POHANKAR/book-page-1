@@ -6,4 +6,12 @@ jobs:
     steps: 
       - name: fetch code
         uses: actions/checkout@v4
-    
+      - name: angular-frontend
+        run: cd angular-frontend
+      - name: Install NodeJS
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install -g @angular/cli@14.2.1
+      - run: npm install
+      - run: ng build
