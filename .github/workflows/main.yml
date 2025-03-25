@@ -6,10 +6,8 @@ jobs:
     steps: 
       - name: fetch code
         uses: actions/checkout@v4
-      - name: Install NodeJS
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 18
       - run: npm ci
       - run: npm test
