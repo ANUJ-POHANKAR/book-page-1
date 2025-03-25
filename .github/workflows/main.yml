@@ -11,6 +11,7 @@ jobs:
       - name: Install NodeJS
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: npm install
-      - run: ng build
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
