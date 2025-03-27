@@ -5,9 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch code
-        uses: actions/checkout@v4
-      - name: Setup Maven Action
-        uses: s4u/setup-maven-action@v1.10.0
+        uses: actions/checkout@v
       - name: Install dependencies
         run: mvn clean package
         working-directory: spring-backend
