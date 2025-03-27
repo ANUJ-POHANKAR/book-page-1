@@ -20,8 +20,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: spring-backend
-          path: spring-backend/target/
+          name: spring-backend-artifact
+          path: spring-backend/*.jar
   test:
     needs: builds
     runs-on: ubuntu-latest
@@ -30,9 +30,9 @@ jobs:
         uses: actions/checkout@v4
       - name: cache dependencies
      
-      - name: Install Dependencies
-        run: npm install
-        working-directory: angular-frontend
+      - name: Test
+        run: mvn tets
+        working-directory: spring-backend
       
 
     
