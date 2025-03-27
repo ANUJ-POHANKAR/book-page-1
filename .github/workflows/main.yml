@@ -30,7 +30,7 @@ jobs:
           name: frontend-artifact
           path: angular-frontend/dist/
   test:
-    needs: build
+    needs: builds
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
