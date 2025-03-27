@@ -10,6 +10,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Cache
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: deep-node-modules-${{ hashFiles('**/lockfiles') }}
       - name: Install dependencies
         run: npm install
         working-directory: angular-frontend
