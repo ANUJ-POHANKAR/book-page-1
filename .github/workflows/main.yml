@@ -1,13 +1,23 @@
-name: Test Code
+name: Job2
 on: [push,workflow_dispatch]
 jobs:
-  test:
+  builds:
     runs-on: "ubuntu-latest"
     steps: 
-      - name: fetch code
+      - name: get code
       - uses: actions/checkout@v4
+      - name: setup NodeJs
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: npm ci
-      - run: npm test
+          node-version: 18 
+      - run: npm install
+        working-directory: angular-frontend
+      - run: npm install angularcli@v4
+      - run: ng build
+        working-directory: angular-frontend 
+      - name: upload artifact
+      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend
+          path: angular-frontend/dist/
