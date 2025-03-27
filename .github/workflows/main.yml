@@ -6,38 +6,30 @@ jobs:
     steps:
       - name: Fetch code
         uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@< 3.8.8 >
+      - run: mvn -V ...
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: angular-frontend/node_modules
-          key: node-modules-${{ hashFiles('angular-frontend/package-lock.json') }}
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
       - name: Install dependencies
-        run: npm install
-        working-directory: angular-frontend
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-      - run: ng build 
-        working-directory: angular-frontend
+        run: mvn clean package
+        working-directory: spring-backend
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: frontend-artifact
-          path: angular-frontend/dist/
+          name: spring-backend
+          path: spring-backend/target/
   test:
     needs: builds
     runs-on: ubuntu-latest
     steps:
-      - name: Get Code
+      - name: Get Code 
         uses: actions/checkout@v4
       - name: cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: node-module-$ {{ hashFiles('**/package-lock.json') }}
+     
       - name: Install Dependencies
         run: npm install
         working-directory: angular-frontend
