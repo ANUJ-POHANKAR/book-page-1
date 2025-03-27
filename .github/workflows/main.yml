@@ -22,8 +22,7 @@ jobs:
              node-modules-
       - name: Install Angular CLI
         run: npm install -g @angular/cli
-      - name: Build Angular project
-        run: ng build 
+      - run: ng build 
         working-directory: angular-frontend
       - name: npm install
         run: npm install
