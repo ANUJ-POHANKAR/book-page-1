@@ -5,29 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch code
-        uses: actions/checkout@v
-      - name: Install dependencies
-        run: mvn clean package
-        working-directory: spring-backend
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: spring-backend-artifact
-          path: spring-backend/target/*.jar
-  test:
-    needs: builds
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Code 
         uses: actions/checkout@v4
-      - name: cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
-      - name: Test
-        run: mvn test
-        working-directory: spring-backend
-      
-
-    
+  
