@@ -42,7 +42,9 @@ jobs:
           key: node-module-$ {{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         run: npm install
+        working-directory: angular-frontend
       - name: test code
         run: npm test
+        working-directory: angular-frontend
 
     
