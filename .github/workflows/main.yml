@@ -10,6 +10,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Install dependencies
+        run: npm install
+        working-directory: angular-frontend
       - name: Cache
         uses: actions/cache@v4
         with:
@@ -17,16 +20,13 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: | 
              node-modules-
-      - name: Install dependencies
-        run: npm install
-        working-directory: angular-frontend
       - name: Install Angular CLI
         run: npm install -g @angular/cli
       - name: Build Angular project
         run: ng build 
         working-directory: angular-frontend
       - name: npm install
-        run: npm ci
+        run: npm install
       - name: test
         run: npm test
       - name: Upload artifact
