@@ -14,7 +14,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: deep-node-modules-${{ hashFiles('**/lockfiles') }}
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
         working-directory: angular-frontend
