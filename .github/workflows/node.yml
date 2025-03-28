@@ -1,29 +1,14 @@
-# name: nodejs
-# on: push
-# jobs: 
-#   build:
-#     runs-on: "ubuntu-latest"
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: 18
-#       - run: npm install
-#         working-directory: angular-frontend
-#       - run: npm install -g @angular/cli  
-#       - run: npm run build
-#         working-directory: angular-frontend
-#       - name: Upload build artifacts
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: angular-build
-#           path: angular-frontend/dist
-#   deploy:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Download the artifact
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: angular-build  # Must match the uploaded artifact name
-#           path: angular-frontend/dist
+name: prod
+on: push
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch Code
+        uses: actions/checkout@v4
+      - name: steup Node.JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+        working-directory: angular-frontend
