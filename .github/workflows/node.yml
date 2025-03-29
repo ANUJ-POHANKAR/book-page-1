@@ -3,6 +3,7 @@ on: [push,workflow_dispatch]
 
 jobs:
   build:
+    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: fetch code
@@ -19,7 +20,7 @@ jobs:
       - name: Output information
         run: |
           echo "${{ secrets.MYSQL_PASSWORD }}"
-          echo "${{ env.MYSQL_ROOT_PASSWORD }}"
+          echo "${{ secrets.MYSQL_ROOT_PASSWORD }}"
   deploy: 
     runs-on: ubuntu-latest
     steps: 
