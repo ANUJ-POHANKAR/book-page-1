@@ -16,8 +16,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
+          path: angular-frontend/node_modules
+          key: angular-frontend-${{ hashFiles('angular-frontend/package-lock.json') }}
       - name: NPM
         run: npm install
         working-directory: angular-frontend
