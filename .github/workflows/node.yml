@@ -1,12 +1,8 @@
 name: env job
 on: [push,workflow_dispatch]
-env: 
-  MYSQL_USER: admin
+
 jobs:
   build:
-    env:
-      MYSQL_PASSWORD: asdert
-      MYSQL_ROOT_PASSWORD: vbfgqwer23
     runs-on: ubuntu-latest
     steps:
       - name: fetch code
@@ -22,10 +18,10 @@ jobs:
           key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
       - name: Output information
         run: |
-          echo "${{ env.MYSQL_PASSWORD }}"
+          echo "${{ secrets.MYSQL_PASSWORD }}"
           echo "${{ env.MYSQL_ROOT_PASSWORD }}"
   deploy: 
     runs-on: ubuntu-latest
     steps: 
       - name: output info
-        run: echo "${{ env.MYSQL_USER }}"
+        run: echo "${{ secrets.MYSQL_USER }}"
