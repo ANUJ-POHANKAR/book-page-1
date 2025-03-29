@@ -28,4 +28,4 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: output info
-        run: echo "${{ MYSQL_USER }}"
+        run: echo "${{ env.MYSQL_USER }}"
