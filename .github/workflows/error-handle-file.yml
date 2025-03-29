@@ -21,6 +21,10 @@ jobs:
       - name: NPM
         run: npm install
         working-directory: angular-frontend
+      - name: build
+      - run: npm install -g @angular/cli  
+      - run: npm run build
+        working-directory: angular-frontend
       - name: Test
         continue-on-error: true
         id: run-test
@@ -30,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with: 
           name: angular-frontend
-          path: angular-frontend/dist/
+          path: angular-frontend/dist
       - name: Output information
         run: |
           echo "${{ secrets.MYSQL_PASSWORD }}"
