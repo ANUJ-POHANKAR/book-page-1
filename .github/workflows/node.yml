@@ -17,12 +17,32 @@ jobs:
         with:
           path: ~/.npm
           key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
+      - name: NPM
+        run: npm install
+        working-directory: angular-frontend
+      - name: Test
+        id: run-test
+        run: npm run test
+        working-directory: angular-frontend
+      - name: Upload Artifact
+        if: failure() && steps.run-test.outcome == 'failure' 
+        uses: actions/upload-artifact@v4
+        with: 
+          name: angular-frontend
+          path: angular-frontend/dist/
       - name: Output information
         run: |
           echo "${{ secrets.MYSQL_PASSWORD }}"
           echo "${{ secrets.MYSQL_ROOT_PASSWORD }}"
   deploy: 
+    needs: build
+    if: failure()
     runs-on: ubuntu-latest
     steps: 
       - name: output info
         run: echo "${{ secrets.MYSQL_USER }}"
+      - name: Download the artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-frontend
+          path: angular-frontend/dist/
