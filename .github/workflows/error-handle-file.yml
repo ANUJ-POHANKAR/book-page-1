@@ -1,1 +1,37 @@
 
+name: env job
+on: [push,workflow_dispatch]
+
+jobs:
+  build:
+    environment: testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch code
+        uses: actions/checkout@v4
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
+      - name: NPM
+        run: npm install
+        working-directory: angular-frontend
+      - name: Test
+        continue-on-error: true
+        id: run-test
+        run: npm run test
+        working-directory: angular-frontend
+      - name: Upload Artifact 
+        uses: actions/upload-artifact@v4
+        with: 
+          name: angular-frontend
+          path: angular-frontend/dist/
+      - name: Output information
+        run: |
+          echo "${{ secrets.MYSQL_PASSWORD }}"
+          echo "${{ secrets.MYSQL_ROOT_PASSWORD }}"
