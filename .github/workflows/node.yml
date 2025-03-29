@@ -21,10 +21,12 @@ jobs:
           path: ~/.npm
           key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
       - name: Output information
-        run: echo "${{ env.MYSQL_PASSWORD }}"
+        run: |
+          echo "${{ env.MYSQL_PASSWORD }}"
+          echo "${{ env.MYSQL_ROOT_PASSWORD }}"
   deploy: 
     needs: build
     runs-on: ubuntu-latest
     steps: 
       - name: output info
-        run: echo "$ {{ env.MYSQL_USER }}"
+        run: echo "$ {{ MYSQL_USER }}"
