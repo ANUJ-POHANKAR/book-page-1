@@ -25,8 +25,7 @@ jobs:
           echo "${{ env.MYSQL_PASSWORD }}"
           echo "${{ env.MYSQL_ROOT_PASSWORD }}"
   deploy: 
-    needs: build
     runs-on: ubuntu-latest
     steps: 
       - name: output info
-        run: echo "$ {{ MYSQL_USER }}"
+        run: echo "$ {{ env.MYSQL_USER }}"
