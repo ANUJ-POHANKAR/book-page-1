@@ -1,27 +1,30 @@
-name: prod
-on: push
+name: env job
+on: [push,workflow_dispatch]
+env: 
+  MYSQL_USER: admin
 jobs:
-  builds:
+  build:
+    env:
+      MYSQL_PASSWORD: asdert
+      MYSQL_ROOT_PASSWORD: vbfgqwer23
     runs-on: ubuntu-latest
     steps:
-      - name: fetch Code
+      - name: fetch code
         uses: actions/checkout@v4
-      - name: steup Node.JS
-        uses: actions/setup-node@v4
+      - name: setup Node.js
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: cache
-        uses: actions/cache@v4.2.3
+      - name: Cache
+      - uses: actions/cache@v4
         with:
-          path: angular-frontend/
-          key: node-modules-${{ hashFiles('**/package.json') }}
-      - run: npm install
-        working-directory: angular-frontend
-      - run: npm install -g @angular/cli
-      - run: ng build
-        working-directory: angular-frontend
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with: 
-          name: angular-frontend
-          path: angular-frontend/dist/
+          path: ~/.npm
+          key: angular-frontend-${{ hashFiles('**/package-lock.json') }}
+      - name: Output information
+        run: echo "${{ env.MYSQL_PASSWORD }}"
+  deploy: 
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: output info
+        run: echo "$ {{ env.MYSQL_USER }}"
