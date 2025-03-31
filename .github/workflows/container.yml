@@ -4,10 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: amazonlinux
+      image: ubuntu:latest
     steps:
-      - name: Install unzip
-        run: yum install tar -y
       - name: fetch code
         uses: actions/checkout@v4
       - name: Npm
