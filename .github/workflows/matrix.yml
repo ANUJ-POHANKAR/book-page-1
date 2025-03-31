@@ -1,0 +1,27 @@
+name: matrix
+on: [push,workflow_dispatch]
+jobs:
+  build:
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest,windows-latest]
+        node-versions: [18,20]
+    runs-on: ${{ matrix.operating-system }}
+      steps:
+        - name: get Code
+          uses: actions/checkout@v4
+        - name: set up node
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{ matrix.node-versions }}
+        - name: npm install
+          run: npm install
+          working-directory: angular-frontend
+        - run: npm install -g angular/cli
+        - run: npm run build
+          working-directory: angular-frontend
+        - name: Upload
+          uses: actions/upload-artifact@v4
+          with:
+            name: angular-frontend
+            path: angular-frontend/dist/
