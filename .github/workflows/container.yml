@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: amazon:linux
+      image: amazonlinux
     steps:
       - name: fetch code
         uses: actions/checkout@v4
