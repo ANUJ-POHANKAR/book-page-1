@@ -1,1 +1,8 @@
 
+name: Call Reusable Workflow
+on: 
+  workflow_dispatch  # Allows manual triggering
+
+jobs:
+  call-reusable:
+    uses: ANUJ-POHANKAR/book-page-1/.github/workflows/main.yml@main
