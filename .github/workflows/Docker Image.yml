@@ -15,8 +15,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - run: sudo docker tag tomcat-9 anuj210/dock-repo:frontend-git
-      - run: sudo docker push anuj210/dock-repo:tomcat-9
+      - run: sudo docker tag frontend-git anuj210/dock-repo:frontend-git
+      - run: sudo docker push anuj210/dock-repo:frontend-git
 
 
 
