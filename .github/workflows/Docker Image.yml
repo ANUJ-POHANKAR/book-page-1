@@ -12,5 +12,6 @@ jobs:
         working-directory: angular-frontend
 
       - name: Run Docker Container
-        run: docker run -d -p 80:80 frontend
-
+      - run: docker run -d -p 80:80 frontend
+      - run: docker ps
+      
