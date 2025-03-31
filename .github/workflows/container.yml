@@ -7,7 +7,7 @@ jobs:
       image: amazonlinux
     steps:
       - name: Install unzip
-        run: yum install unzip -y
+        run: yum install tar -y
       - name: fetch code
         uses: actions/checkout@v4
       - name: Npm
