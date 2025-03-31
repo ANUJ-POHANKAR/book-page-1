@@ -1,5 +1,5 @@
 name: JOB2
-on: [push, workflow_dispatch]
+on: [push, workflow_dispatch,workflow_call]
 jobs:
   builds:
     runs-on: ubuntu-latest
