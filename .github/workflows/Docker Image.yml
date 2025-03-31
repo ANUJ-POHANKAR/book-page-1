@@ -14,4 +14,4 @@ jobs:
       - name: Run Docker Container
         run: docker run -d -p 80:80 frontend
       - run: docker ps
-      
+      - run: curl http://localhost:80
