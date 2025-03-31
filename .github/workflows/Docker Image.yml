@@ -15,8 +15,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - run: sudo docker tag frontend-git anuj210/dock-repo:frontend-git
-      - run: sudo docker push anuj210/dock-repo:frontend-git
+      - run: docker tag frontend-git anuj210/dock-repo:frontend-git
+      - run: docker push anuj210/dock-repo:frontend-git
 
 
 
