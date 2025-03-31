@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: ubuntu:latest
+      image: node:alpine
     steps:
       - name: fetch code
         uses: actions/checkout@v4
