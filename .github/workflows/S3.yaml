@@ -34,4 +34,4 @@ jobs:
           region: ap-south-1
           bucket: giyu-123
           source: angular-frontend/dist/
-          target: /
+          target: 
