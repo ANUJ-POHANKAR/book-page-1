@@ -15,7 +15,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - run: docker tag frontend-git anuj210/dock-repo:backend-git
+      - run: docker tag backend-git anuj210/dock-repo:backend-git
       - run: docker push anuj210/dock-repo:backend-git
 
 
