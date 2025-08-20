@@ -1,10 +1,10 @@
 name: Deploy on S3
-on: push
+on: workflow_dispatch
 jobs:
   s3-push:
     runs-on: ubuntu-latest
     steps: 
-      - name: fetsch Code
+      - name: fetch Code
         uses: actions/checkout@v4
       - name: Nodejs
         uses: actions/setup-node@v4
